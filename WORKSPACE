@@ -4,6 +4,6 @@ load("//bazel:repositories.bzl", "repositories")
 
 repositories()
 
-load("//bazel:dependency_imports.bzl", "easycompressor_deps")
+load("//bazel:deps_imports.bzl", "easycompressor_deps")
 
 easycompressor_deps()

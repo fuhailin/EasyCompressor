@@ -10,14 +10,7 @@ exports_files(
 build_test(
     name = "build_test",
     targets = [
-        "@bzip2//:bzip2_lib",
+        "@bzip2//:bzip2",
     ],
     visibility = ["//:__pkg__"],
-)
-
-cc_library(
-    name = "bzip21",
-    deps = [
-        "@bzip2//:bzip2_lib",
-    ],
 )

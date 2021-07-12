@@ -3,8 +3,10 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 
-def rules_cc_repo():
-    COMMIT = "daf6ace7cfeacd6a83e9ff2ed659f416537b6c74"
+def rules_cc_repo(COMMIT = "daf6ace7cfeacd6a83e9ff2ed659f416537b6c74"):
+    # project_name = "C++ rules for Bazel",
+    # project_desc = "Bazel rules for the C++ language",
+    # project_url = "https://github.com/bazelbuild/rules_cc",
     maybe(
         http_archive,
         name = "rules_cc",
@@ -17,14 +19,11 @@ def rules_cc_repo():
         strip_prefix = "rules_cc-" + COMMIT,
     )
 
-def rules_foreign_cc_repo():
-    COMMIT = "6d1d16d3bb1c09a5154b483de902755ce1f05746"
+def rules_foreign_cc_repo(COMMIT = "main"):
     maybe(
         http_archive,
         name = "rules_foreign_cc",
-        sha256 = "031f454a5c8979bec6c2f8df906041a16efe208b7613da8ac6c58b06158e1c68",
         urls = [
-            # "https://3rdcpp-1256340525.cos.ap-beijing.myqcloud.com/rules_foreign_cc-{commit}.tar.gz".format(commit = COMMIT),
             "https://github.com.cnpmjs.org/bazelbuild/rules_foreign_cc/archive/{commit}.zip".format(commit = COMMIT),
             "https://github.91chifun.workers.dev//https://github.com/bazelbuild/rules_foreign_cc/archive/{commit}.zip".format(commit = COMMIT),
             "https://hub.fastgit.org/bazelbuild/rules_foreign_cc/archive/{commit}.zip".format(commit = COMMIT),

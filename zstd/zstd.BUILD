@@ -1,22 +1,24 @@
-# vim: ft=bzl
-# https://github.com/google/riegeli/blob/master/third_party/net_zstd.BUILD
-# https://github.com/cschuet/zstd/blob/master/bazel/third_party/zstd.BUILD
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
 package(default_visibility = ["//visibility:public"])
 
 filegroup(
-    name = "all",
+    name = "all_srcs",
     srcs = glob(["**"]),
 )
 
-cc_library(
+cmake(
     name = "zstd",
-    srcs = glob([
-        "common/*.c",
-        "common/*.h",
-        "compress/*.c",
-        "compress/*.h",
-        "decompress/*.c",
-        "decompress/*.h",
-    ]),
-    hdrs = ["zstd.h"],
+    build_args = [
+        "-j `nproc`",
+    ],
+    cache_entries = {
+        "ZSTD_BUILD_TESTS": "OFF",
+        "ZSTD_LEGACY_SUPPORT": "OFF",
+    },
+    lib_source = ":all_srcs",
+    out_lib_dir = "lib64",
+    out_shared_libs = ["libzstd.so"],
+    out_static_libs = ["libzstd.a"],
+    working_directory = "build/cmake",
 )

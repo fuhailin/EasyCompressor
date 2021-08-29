@@ -17,8 +17,17 @@ cmake(
         "ZSTD_LEGACY_SUPPORT": "OFF",
     },
     lib_source = ":all_srcs",
-    out_lib_dir = "lib64",
-    out_shared_libs = ["libzstd.so"],
+    out_shared_libs = select({
+        "@platforms//os:macos": [
+            "libzstd.dylib",
+        ],
+        "@platforms//os:linux": [
+            "libzstd.so",
+        ],
+        "@platforms//os:windows": [
+            "libzstd.dll",
+        ],
+    }),
     out_static_libs = ["libzstd.a"],
     working_directory = "build/cmake",
 )

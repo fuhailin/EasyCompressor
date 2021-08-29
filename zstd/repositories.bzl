@@ -8,7 +8,6 @@ def repo(COMMIT = "1.5.0"):
         http_archive,
         name = "zstd",
         urls = [
-            "https://github.91chifun.workers.dev/https://github.com//facebook/zstd/archive/v{commit}.tar.gz".format(commit = COMMIT),
             "https://github.com/facebook/zstd/archive/v{commit}.tar.gz".format(commit = COMMIT),
         ],
         strip_prefix = "zstd-" + COMMIT,

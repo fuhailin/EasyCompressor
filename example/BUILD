@@ -4,3 +4,8 @@ cc_binary(
     deps = ["@zlib"],
 )
 
+cc_binary(
+    name = "lz4_usage_example",
+    srcs = ["lz4_frameCompress.c"],
+    deps = ["@lz4"],
+)

@@ -11,7 +11,7 @@ build_test(
     name = "build_test",
     targets = [
         "@lz4//:lz4",
-        "@lz4//:lz4_hc",
+        # "@lz4//:lz4_hc",
     ],
     visibility = ["//:__pkg__"],
 )

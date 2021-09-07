@@ -8,7 +8,6 @@ def repo(COMMIT = "1.1.8"):
         http_archive,
         name = "snappy",
         urls = [
-            "https://github.91chifun.workers.dev/https://github.com//google/snappy/archive/{commit}.tar.gz".format(commit = COMMIT),
             "https://github.com/google/snappy/archive/{commit}.tar.gz".format(commit = COMMIT),
         ],
         strip_prefix = "snappy-" + COMMIT,

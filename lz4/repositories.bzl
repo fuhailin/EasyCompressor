@@ -8,8 +8,6 @@ def repo(COMMIT = "1.9.2"):
         http_archive,
         name = "lz4",
         urls = [
-            "https://github.com.cnpmjs.org/lz4/lz4/archive/v{commit}.tar.gz".format(commit = COMMIT),
-            "https://github.91chifun.workers.dev/https://github.com//lz4/lz4/archive/v{commit}.tar.gz".format(commit = COMMIT),
             "https://github.com/lz4/lz4/archive/v{commit}.tar.gz".format(commit = COMMIT),
         ],
         strip_prefix = "lz4-" + COMMIT,

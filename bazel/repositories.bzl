@@ -6,6 +6,7 @@ load("//snappy:repositories.bzl", snappy = "repo")
 load("//zlib:repositories.bzl", zlib = "repo")
 load("//zstd:repositories.bzl", zstd = "repo")
 load("//gzip:repositories.bzl", gzip = "repo")
+load("//lzma:repositories.bzl", lzma = "repo")
 
 def repositories():
     """Load all repositories needed for the targets of rules_foreign_cc_examples_third_party"""
@@ -19,3 +20,4 @@ def repositories():
     zstd()
     snappy()
     gzip()
+    lzma()

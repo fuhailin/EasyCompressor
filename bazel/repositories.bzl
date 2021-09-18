@@ -8,7 +8,7 @@ load("//zstd:repositories.bzl", zstd = "repo")
 load("//gzip:repositories.bzl", gzip = "repo")
 load("//lzma:repositories.bzl", lzma = "repo")
 
-def repositories():
+def rules_compressor_repo():
     """Load all repositories needed for the targets of rules_foreign_cc_examples_third_party"""
 
     # load rules

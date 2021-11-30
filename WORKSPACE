@@ -1,4 +1,4 @@
-workspace(name = "org_tensorflow")
+workspace(name = "rules_compressor")
 
 # Initialize the TensorFlow repository and all dependencies.
 #

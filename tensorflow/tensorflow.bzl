@@ -12,14 +12,14 @@ two_gpu_tags = ["requires-gpu-nvidia:2", "notap", "manual", "no_pip"]
 workspace_root = Label("//:WORKSPACE").workspace_root or "."
 
 def clean_dep(target):
-    """Returns string to 'target' in @org_tensorflow repository.
+    """Returns string to 'target' in @rules_compressor repository.
 
-    Use this function when referring to targets in the @org_tensorflow
+    Use this function when referring to targets in the @rules_compressor
     repository from macros that may be called from external repositories.
     """
 
     # A repo-relative label is resolved relative to the file in which the
-    # Label() call appears, i.e. @org_tensorflow.
+    # Label() call appears, i.e. @rules_compressor.
     return str(Label(target))
 
 def if_oss(oss_value, google_value = []):

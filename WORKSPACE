@@ -1,24 +1,23 @@
-workspace(name = "rules_compressor")
+workspace(name = "org_tensorflow")
 
-load("//bazel:repositories.bzl", "repositories")
+# Initialize the TensorFlow repository and all dependencies.
+#
+# The cascade of load() statements and tf_workspace?() calls works around the
+# restriction that load() statements need to be at the top of .bzl files.
+# E.g. we can not retrieve a new repository with http_archive and then load()
+# a macro from that repository in the same file.
+load("@//tensorflow:workspace3.bzl", "tf_workspace3")
 
-repositories()
+tf_workspace3()
 
-load("//bazel:deps_imports.bzl", "rules_compressor_deps")
+load("@//tensorflow:workspace2.bzl", "tf_workspace2")
 
-rules_compressor_deps()
+tf_workspace2()
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@//tensorflow:workspace1.bzl", "tf_workspace1")
 
-http_archive(
-    name = "bazel_skylib",
-    sha256 = "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
-    urls = [
-        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
-        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
-    ],
-)
+tf_workspace1()
 
-load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+load("@//tensorflow:workspace0.bzl", "tf_workspace0")
 
-bazel_skylib_workspace()
+tf_workspace0()

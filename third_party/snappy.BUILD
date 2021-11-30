@@ -1,6 +1,6 @@
-# vim: ft=bzl
+package(default_visibility = ["//visibility:public"])
 
-licenses(["notice"])
+licenses(["notice"])  # BSD 3-Clause
 
 exports_files(["COPYING"])
 
@@ -18,13 +18,19 @@ cc_library(
         "snappy-stubs-public.h",
     ],
     hdrs = ["snappy.h"],
-    copts = [
-        "-fno-exceptions",
-        "-Wno-sign-compare",
-        "-Wno-shift-negative-value",
-    ],
-    includes = ["."],
-    visibility = ["//visibility:public"],
+    copts = ["-DHAVE_CONFIG_H"] + select({
+        "@org_tensorflow//tensorflow:windows": [],
+        "//conditions:default": [
+            "-fno-exceptions",
+            "-Wno-sign-compare",
+            "-Wno-shift-negative-value",
+            "-Wno-implicit-function-declaration",
+        ],
+    }),
+    defines = select({
+        "@org_tensorflow//tensorflow:windows": [],
+        "//conditions:default": ["HAVE_SYS_UIO_H"],
+    }),
 )
 
 genrule(
@@ -81,7 +87,7 @@ genrule(
 )
 
 genrule(
-    name = "snappy_stubs_public.h",
+    name = "snappy_stubs_public_h",
     srcs = ["snappy-stubs-public.h.in"],
     outs = ["snappy-stubs-public.h"],
     cmd = ("sed " +

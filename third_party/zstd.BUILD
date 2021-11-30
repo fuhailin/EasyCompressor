@@ -18,7 +18,7 @@ cmake(
     },
     lib_source = ":all_srcs",
     out_lib_dir = select({
-        "@platforms//os:linux": "lib64",
+        "@platforms//os:linux": "lib",
         "//conditions:default": "lib",
     }),
     out_shared_libs = select({
@@ -32,6 +32,5 @@ cmake(
             "libzstd.dll",
         ],
     }),
-    out_static_libs = ["libzstd.a"],
     working_directory = "build/cmake",
 )

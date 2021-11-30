@@ -1,5 +1,7 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
+package(default_visibility = ["//visibility:public"])
+
 cc_binary(
     name = "zlib_usage_example",
     srcs = ["zlib_example.cpp"],

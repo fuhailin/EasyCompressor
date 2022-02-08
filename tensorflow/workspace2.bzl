@@ -20,9 +20,8 @@ def _tf_repositories():
     #    curl -L <url> | sha256sum
     # and update the sha256 with the result.
 
-    
     http_archive(
-        name = "bzip2",
+        name = "org_bzip_bzip2",
         build_file = Label("//third_party:bzip2.BUILD"),
         strip_prefix = "bzip2-1.0.8",
         urls = [
@@ -75,7 +74,7 @@ def _tf_repositories():
     )
 
     http_archive(
-        name = "zstd",
+        name = "com_github_facebook_zstd",
         urls = [
             "https://github.com/facebook/zstd/archive/v1.5.0.tar.gz",
         ],
@@ -100,7 +99,6 @@ def workspace():
     rules_pkg_dependencies()
     rules_cc_dependencies()
     rules_foreign_cc_dependencies()
-
 
 # Alias so it can be loaded without assigning to a different symbol to prevent
 # shadowing previous loads and trigger a buildifier warning.

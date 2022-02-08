@@ -29,9 +29,9 @@ build_test(
         "@org_lzma_lzma//:lzma",
         "@snappy",
         "@zlib",
-        "@zstd//:zstd",
+        "@com_github_facebook_zstd//:zstd",
+        "@org_bzip_bzip2//:bzip2",
     ],
     visibility = ["//:__pkg__"],
 )
 ```
-

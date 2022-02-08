@@ -17,13 +17,13 @@ cc_binary(
 build_test(
     name = "build_test",
     targets = [
-        "@bzip2",
-        # "@org_gnu_gzip//:gzip",
+        "@org_bzip_bzip2//:bzip2",
         "@lz4",
         "@org_lzma_lzma//:lzma",
         "@snappy",
         "@zlib",
-        "@zstd//:zstd",
+        "@com_github_facebook_zstd//:zstd",
+        # "@org_gnu_gzip//:gzip",
     ],
     visibility = ["//:__pkg__"],
 )

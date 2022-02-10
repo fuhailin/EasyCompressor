@@ -2,8 +2,8 @@
 
 # Import third party config rules.
 load("//tensorflow:version_check.bzl", "check_bazel_version_at_least")
-load("//third_party:repo.bzl", "tf_http_archive", "tf_mirror_urls")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
 # Import external repository rules.
 load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
@@ -39,38 +39,28 @@ def _tf_repositories():
         build_file = Label("//third_party:gzip.BUILD"),
     )
 
-    tf_http_archive(
+    http_archive(
         name = "lz4",
         sha256 = "658ba6191fa44c92280d4aa2c271b0f4fbc0e34d249578dd05e50e76d0e5efcc",
         strip_prefix = "lz4-1.9.2",
-        build_file = "//third_party:lz4.BUILD",
-        urls = tf_mirror_urls("https://github.com/lz4/lz4/archive/v1.9.2.tar.gz"),
+        build_file = Label("//third_party:lz4.BUILD"),
+        urls = ["https://github.com/lz4/lz4/archive/v1.9.2.tar.gz"],
     )
 
-    tf_http_archive(
+    http_archive(
         name = "org_lzma_lzma",
-        build_file = "//third_party:lzma.BUILD",
+        build_file = Label("//third_party/lzma:lzma.BUILD"),
         sha256 = "ae197f65cff62cbd2d648e282dca648f02402d8f6b5a81be0ff913d0598de9bb",
         strip_prefix = "xz-5.2.3",
-        urls = tf_mirror_urls("https://github.com/xz-mirror/xz/archive/v5.2.3.tar.gz"),
+        urls = ["https://github.com/xz-mirror/xz/archive/v5.2.3.tar.gz"],
     )
 
-    tf_http_archive(
+    http_archive(
         name = "snappy",
-        build_file = "//third_party:snappy.BUILD",
-        sha256 = "16b677f07832a612b0836178db7f374e414f94657c138e6993cbfc5dcc58651f",
-        strip_prefix = "snappy-1.1.8",
-        system_build_file = "//third_party/systemlibs:snappy.BUILD",
-        urls = tf_mirror_urls("https://github.com/google/snappy/archive/1.1.8.tar.gz"),
-    )
-
-    tf_http_archive(
-        name = "zlib",
-        build_file = "//third_party:zlib.BUILD",
-        sha256 = "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
-        strip_prefix = "zlib-1.2.11",
-        system_build_file = "//third_party/systemlibs:zlib.BUILD",
-        urls = tf_mirror_urls("https://zlib.net/zlib-1.2.11.tar.gz"),
+        build_file = Label("//third_party/snappy:snappy.BUILD"),
+        sha256 = "75c1fbb3d618dd3a0483bff0e26d0a92b495bbe5059c8b4f1c962b478b6e06e7",
+        strip_prefix = "snappy-1.1.9",
+        urls = ["https://github.com/google/snappy/archive/1.1.9.tar.gz"],
     )
 
     http_archive(
@@ -80,6 +70,13 @@ def _tf_repositories():
         ],
         strip_prefix = "zstd-1.5.0",
         build_file = Label("//third_party:zstd.BUILD"),
+    )
+
+    new_git_repository(
+        name = "com_github_google_snappy",
+        build_file = Label("//third_party/snappy:snappy.BUILD"),
+        remote = "https://github.com/google/snappy",
+        branch = "main",
     )
 
 def workspace():

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 load("@rules_cc//cc:defs.bzl", "cc_library")
-load("@org_tensorflow//third_party/fbthrift:copts.bzl", "DEFAULT_CPP_COPTS")
+# load("@org_tensorflow//tensorflow:copts.bzl", "DEFAULT_CPP_COPTS")
 
 filegroup(
     name = "snappy_stubs_public_h_in",
@@ -44,11 +44,11 @@ cc_library(
         ],
     ),
     hdrs = glob(["**/*.h"]) + [":snappy_stubs_public_h"],
-    copts = DEFAULT_CPP_COPTS,
+    # copts = DEFAULT_CPP_COPTS,
     defines = ["HAVE_CONFIG_H"],
     includes = ["."],
     visibility = ["//visibility:public"],
     deps = [
-        "@org_tensorflow//third_party/snappy/extra:config",
+        "@rules_compressor//third_party/snappy/extra:config",
     ],
 )

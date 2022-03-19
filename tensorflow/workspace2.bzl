@@ -56,8 +56,8 @@ def _tf_repositories():
     )
 
     http_archive(
-        name = "snappy",
-        build_file = Label("//third_party/snappy:snappy.BUILD"),
+        name = "com_github_google_snappy",
+        build_file = Label("//third_party:snappy.BUILD"),
         sha256 = "75c1fbb3d618dd3a0483bff0e26d0a92b495bbe5059c8b4f1c962b478b6e06e7",
         strip_prefix = "snappy-1.1.9",
         urls = ["https://github.com/google/snappy/archive/1.1.9.tar.gz"],
@@ -72,11 +72,15 @@ def _tf_repositories():
         build_file = Label("//third_party:zstd.BUILD"),
     )
 
-    new_git_repository(
-        name = "com_github_google_snappy",
-        build_file = Label("//third_party/snappy:snappy.BUILD"),
-        remote = "https://github.com/google/snappy",
-        branch = "main",
+    COMMIT = "1.2.11"
+    http_archive(
+        name = "zlib",
+        build_file = Label("//third_party:zlib.BUILD"),
+        sha256 = "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
+        strip_prefix = "zlib-{commit}".format(commit = COMMIT),
+        urls = [
+            "https://zlib.net/zlib-{commit}.tar.gz".format(commit = COMMIT),
+        ],
     )
 
 def workspace():

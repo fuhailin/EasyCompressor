@@ -16,6 +16,9 @@ cmake(
         "SNAPPY_BUILD_TESTS": "OFF",
         "SNAPPY_BUILD_BENCHMARKS": "OFF",
     },
+    copts = [
+        "-fPIC",
+    ],
     lib_source = ":all_srcs",
     out_static_libs = select({
         "@platforms//os:windows": ["snappy.lib"],
